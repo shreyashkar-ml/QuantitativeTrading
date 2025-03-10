@@ -1,7 +1,8 @@
+
 import { useState, useEffect } from 'react';
 import { Search, X, ChevronDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { sp500Tickers } from '@/data/sp500Tickers';
+import { sp500Tickers, sp500CompanyNames } from '@/data/sp500Tickers';
 
 interface TickerSearchProps {
   onSearch: (ticker: string) => void;

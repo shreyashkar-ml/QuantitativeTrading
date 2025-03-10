@@ -30,7 +30,9 @@ function Dashboard() {
   // Handle ticker search
   const handleSearch = (searchTicker: string) => {
     setTicker(searchTicker);
-    setRequest(prev => ({ ...prev, ticker: searchTicker }));
+    if (searchTicker) {
+      setRequest(prev => ({ ...prev, ticker: searchTicker }));
+    }
   };
 
   // Find the best performing strategy
