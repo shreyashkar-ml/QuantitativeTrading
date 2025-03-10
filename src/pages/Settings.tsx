@@ -1,14 +1,15 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { AlertCircle, CheckCircle, Clock, Database, Info, Save, Terminal } from 'lucide-react';
+import { CheckCircle, Clock, Save, Upload, RefreshCw, Bell } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Switch } from '@/components/ui/switch';
 
 export function Settings() {
-  const [pythonPath, setPythonPath] = useState('/usr/local/bin/python3');
-  const [scriptPath, setScriptPath] = useState('/path/to/your/main.py');
+  const [darkMode, setDarkMode] = useState(true);
   const [refreshInterval, setRefreshInterval] = useState('30');
   const [autoRefresh, setAutoRefresh] = useState(false);
+  const [notifications, setNotifications] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const { toast } = useToast();
 
@@ -20,7 +21,7 @@ export function Settings() {
       
       toast({
         title: "Settings saved",
-        description: "Your configuration has been updated successfully.",
+        description: "Your preferences have been updated successfully.",
       });
     } catch (error) {
       toast({
@@ -45,7 +46,7 @@ export function Settings() {
         >
           <h1 className="text-3xl font-bold mb-2">Settings</h1>
           <p className="text-muted-foreground">
-            Configure your trading strategy environment and application preferences
+            Configure your application preferences
           </p>
         </motion.div>
 
@@ -56,46 +57,26 @@ export function Settings() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="space-y-8"
         >
-          {/* Python environment section */}
+          {/* Display settings */}
           <div className="glass-card rounded-xl p-6">
             <div className="flex items-center mb-4">
-              <Terminal className="h-5 w-5 mr-2 text-primary" />
-              <h2 className="text-xl font-semibold">Python Environment</h2>
+              <Clock className="h-5 w-5 mr-2 text-primary" />
+              <h2 className="text-xl font-semibold">Display Settings</h2>
             </div>
             
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="python-path">
-                  Python Executable Path
-                </label>
-                <input
-                  id="python-path"
-                  type="text"
-                  value={pythonPath}
-                  onChange={(e) => setPythonPath(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="/usr/local/bin/python3"
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-medium">Dark Mode</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Enable dark mode for the application
+                  </p>
+                </div>
+                <Switch 
+                  checked={darkMode} 
+                  onCheckedChange={setDarkMode} 
+                  aria-label="Toggle dark mode"
                 />
-                <p className="mt-1 text-sm text-muted-foreground">
-                  The path to your Python executable that will run the trading scripts
-                </p>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="script-path">
-                  Trading Script Path
-                </label>
-                <input
-                  id="script-path"
-                  type="text"
-                  value={scriptPath}
-                  onChange={(e) => setScriptPath(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="/path/to/your/main.py"
-                />
-                <p className="mt-1 text-sm text-muted-foreground">
-                  The path to your main.py script that contains your trading strategy
-                </p>
               </div>
             </div>
           </div>
@@ -103,22 +84,23 @@ export function Settings() {
           {/* Data refresh settings */}
           <div className="glass-card rounded-xl p-6">
             <div className="flex items-center mb-4">
-              <Clock className="h-5 w-5 mr-2 text-primary" />
+              <RefreshCw className="h-5 w-5 mr-2 text-primary" />
               <h2 className="text-xl font-semibold">Data Refresh Settings</h2>
             </div>
             
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <input
-                  id="auto-refresh"
-                  type="checkbox"
-                  checked={autoRefresh}
-                  onChange={(e) => setAutoRefresh(e.target.checked)}
-                  className="h-4 w-4 text-primary rounded border-gray-300 focus:ring-primary"
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-medium">Automatic Refresh</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Automatically refresh strategy data
+                  </p>
+                </div>
+                <Switch 
+                  checked={autoRefresh} 
+                  onCheckedChange={setAutoRefresh} 
+                  aria-label="Toggle auto refresh"
                 />
-                <label className="ml-2 block text-sm font-medium" htmlFor="auto-refresh">
-                  Enable automatic refresh
-                </label>
               </div>
               
               <div>
@@ -136,26 +118,32 @@ export function Settings() {
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <p className="mt-1 text-sm text-muted-foreground">
-                  How often the application should run your trading strategy and refresh the results
+                  How often the application should refresh trading strategy results
                 </p>
               </div>
             </div>
           </div>
           
-          {/* Database settings section */}
+          {/* Notification settings */}
           <div className="glass-card rounded-xl p-6">
             <div className="flex items-center mb-4">
-              <Database className="h-5 w-5 mr-2 text-primary" />
-              <h2 className="text-xl font-semibold">Database Settings</h2>
+              <Bell className="h-5 w-5 mr-2 text-primary" />
+              <h2 className="text-xl font-semibold">Notification Settings</h2>
             </div>
             
-            <div className="p-4 border border-yellow-200 bg-yellow-50 rounded-md">
-              <div className="flex">
-                <Info className="h-5 w-5 text-yellow-500 mr-2 flex-shrink-0" />
-                <p className="text-sm text-yellow-700">
-                  Database configuration is handled through environment variables.
-                  Update your .env file to configure database connections.
-                </p>
+            <div className="space-y-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-sm font-medium">Browser Notifications</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Receive notifications when strategy performance changes significantly
+                  </p>
+                </div>
+                <Switch 
+                  checked={notifications} 
+                  onCheckedChange={setNotifications} 
+                  aria-label="Toggle notifications"
+                />
               </div>
             </div>
           </div>
