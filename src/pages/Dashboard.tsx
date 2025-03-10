@@ -126,17 +126,17 @@ function Dashboard() {
                     <StatCard 
                       title="Total Return" 
                       value={`${bestStrategy.totalReturn.toFixed(2)}%`} 
-                      trend={bestStrategy.totalReturn > 0 ? 'up' : 'down'} 
+                      trend={bestStrategy.totalReturn > 0 ? 'positive' : 'negative'} 
                     />
                     <StatCard 
                       title="Annualized Return" 
                       value={`${bestStrategy.annualizedReturn.toFixed(2)}%`} 
-                      trend={bestStrategy.annualizedReturn > 0 ? 'up' : 'down'} 
+                      trend={bestStrategy.annualizedReturn > 0 ? 'positive' : 'negative'} 
                     />
                     <StatCard 
                       title="Sharpe Ratio" 
                       value={bestStrategy.sharpeRatio.toFixed(2)} 
-                      trend={bestStrategy.sharpeRatio > 0.2 ? 'up' : 'down'} 
+                      trend={bestStrategy.sharpeRatio > 0.2 ? 'positive' : 'negative'} 
                     />
                   </div>
                 </div>
