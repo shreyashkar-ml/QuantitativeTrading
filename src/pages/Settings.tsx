@@ -1,23 +1,63 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Save, Upload, RefreshCw, Bell } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Switch } from '@/components/ui/switch';
 
 export function Settings() {
-  const [darkMode, setDarkMode] = useState(true);
+  // State management for user settings
+  const [darkMode, setDarkMode] = useState(false);
   const [refreshInterval, setRefreshInterval] = useState('30');
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [notifications, setNotifications] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const { toast } = useToast();
 
+  // Initialize dark mode based on system preference
+  useEffect(() => {
+    // Check if user has previously set dark mode preference
+    const savedDarkMode = localStorage.getItem('darkMode');
+    
+    if (savedDarkMode) {
+      // Use saved preference
+      const isDark = savedDarkMode === 'true';
+      setDarkMode(isDark);
+      applyDarkMode(isDark);
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(prefersDark);
+      applyDarkMode(prefersDark);
+    }
+  }, []);
+
+  // Function to apply dark mode to document
+  const applyDarkMode = (isDark: boolean) => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  // Handle dark mode toggle
+  const handleDarkModeChange = (checked: boolean) => {
+    setDarkMode(checked);
+    applyDarkMode(checked);
+    localStorage.setItem('darkMode', checked.toString());
+  };
+
   const handleSave = async () => {
     try {
       setIsSaving(true);
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Save settings to localStorage
+      localStorage.setItem('refreshInterval', refreshInterval);
+      localStorage.setItem('autoRefresh', autoRefresh.toString());
+      localStorage.setItem('notifications', notifications.toString());
       
       toast({
         title: "Settings saved",
@@ -74,7 +114,7 @@ export function Settings() {
                 </div>
                 <Switch 
                   checked={darkMode} 
-                  onCheckedChange={setDarkMode} 
+                  onCheckedChange={handleDarkModeChange} 
                   aria-label="Toggle dark mode"
                 />
               </div>

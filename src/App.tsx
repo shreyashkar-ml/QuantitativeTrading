@@ -9,25 +9,28 @@ import Dashboard from "./pages/Dashboard";
 import Strategies from "./pages/Strategies";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import { DarkModeProvider } from "./providers/DarkModeProvider";
 
 // Create a QueryClient instance
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/strategies" element={<Strategies />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <DarkModeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/strategies" element={<Strategies />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </DarkModeProvider>
   </QueryClientProvider>
 );
 
