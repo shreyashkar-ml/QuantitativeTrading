@@ -10,7 +10,7 @@ export const api = {
     // Mock data based on the provided terminal output
     return [
       {
-        name: "Alpha1",
+        name: "MeanReversalStrategy",
         equity: 255261.50,
         totalReturn: 155.26,
         annualizedReturn: 12.62,
@@ -19,7 +19,7 @@ export const api = {
         maxDrawdown: -39.43,
       },
       {
-        name: "Alpha2",
+        name: "PriceRatioMeanStrategy",
         equity: 168163.07,
         totalReturn: 68.16,
         annualizedReturn: 9.38,
@@ -28,7 +28,7 @@ export const api = {
         maxDrawdown: -63.17,
       },
       {
-        name: "Alpha3",
+        name: "MomentumStrategy",
         equity: 74736.92,
         totalReturn: -25.26,
         annualizedReturn: -0.69,
@@ -37,7 +37,7 @@ export const api = {
         maxDrawdown: -58.11,
       },
       {
-        name: "Combined Alpha",
+        name: "Combined Strategy",
         equity: 83719.00,
         totalReturn: -16.28,
         annualizedReturn: 0.80,
@@ -46,7 +46,7 @@ export const api = {
         maxDrawdown: -76.78,
       },
       {
-        name: "Regime Switching Alpha",
+        name: "Regime Switching Strategy",
         equity: 151563.95,
         totalReturn: 51.56,
         annualizedReturn: 7.22,
@@ -63,7 +63,7 @@ export const api = {
     
     // Return the best performing strategy as the latest result
     return {
-      name: "Alpha1", // Best performing strategy based on provided data
+      name: "MeanReversalStrategy", // Best performing strategy based on provided data
       equity: 255261.50,
       totalReturn: 155.26,
       annualizedReturn: 12.62,
