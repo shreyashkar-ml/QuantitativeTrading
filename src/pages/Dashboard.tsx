@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import StatCard from '@/components/StatCard';
+import { StatCard } from '@/components/StatCard';
 import TickerSearch from '@/components/TickerSearch';
 import tradingService, { StrategyRequest } from '@/services/tradingService';
 import { StrategyResult } from '@/components/StrategyCard';
