@@ -9,22 +9,35 @@ export interface StrategyRequest {
   initialCapital?: number;
 }
 
-// In a real deployment, this service would make HTTP requests to an API endpoint
-// that runs the Python code on the server rather than the client
+// Modify this service to integrate with your Python code
 const tradingService = {
   // Get all strategies for a specific ticker
   getStrategies: async (request: StrategyRequest): Promise<StrategyResult[]> => {
     try {
-      // In a real environment, this would be a fetch request to your backend API
-      // Example: return await fetch(`/api/strategies?ticker=${request.ticker}`)
+      console.log("Request sent to Python backend:", request);
       
-      // For demo purposes, we'll simulate an API delay
+      // REPLACE THIS SECTION WITH YOUR ACTUAL PYTHON INTEGRATION
+      // Options:
+      // 1. Call an API endpoint that runs your Python code
+      // Example: const response = await fetch('/api/run-python', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(request)
+      // });
+      // const data = await response.json();
+      
+      // 2. Use a WebSocket connection to your Python backend
+      // 3. For development, you could use a proxy to your Python server
+
+      // Temporary simulation of API delay - remove this in production
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Simulate different results based on the ticker
+      // REPLACE THIS MOCK DATA WITH YOUR ACTUAL PYTHON RESULTS
+      // The mock code below demonstrates the expected structure
       const tickerMultiplier = getMultiplierForTicker(request.ticker);
       
       // Mock data that simulates what would come from the Python backend
+      // YOUR PYTHON CODE SHOULD RETURN DATA IN THIS FORMAT
       return [
         {
           name: "MeanReversalStrategy",
@@ -81,7 +94,7 @@ const tradingService = {
   // Get a specific strategy result
   getStrategyResult: async (strategyName: string, request: StrategyRequest): Promise<StrategyResult> => {
     try {
-      // In a real environment, this would be a fetch request to your backend API
+      // In a real environment, this would be a fetch request to your Python backend
       // Example: return await fetch(`/api/strategy/${strategyName}?ticker=${request.ticker}`)
       
       // For demo purposes, we'll simulate an API delay
@@ -104,6 +117,7 @@ const tradingService = {
 };
 
 // Helper function to generate different results for different tickers
+// You can remove this when integrating with your actual Python code
 function getMultiplierForTicker(ticker: string): number {
   // Map common tickers to specific multipliers
   const multipliers: Record<string, number> = {

@@ -6,6 +6,7 @@ export const sp500Tickers = [
   "COST", "ABBV", "PEP", "KO", "ADBE", "TMO", "MCD", "CRM", "BAC", "CSCO",
   "PFE", "AMD", "CMCSA", "NFLX", "INTC", "DIS", "VZ", "ABT", "WMT", "DHR",
   "ACN", "TXN", "WFC", "PM", "NEE", "QCOM", "LIN", "NKE", "COP", "IBM"
+  // You can add or modify this list to match your requirement
 ];
 
 // Company names for the tickers
@@ -60,4 +61,5 @@ export const sp500CompanyNames: Record<string, string> = {
   "NKE": "NIKE, Inc.",
   "COP": "ConocoPhillips",
   "IBM": "International Business Machines Corporation"
+  // You can add or modify this list to match your requirement
 };

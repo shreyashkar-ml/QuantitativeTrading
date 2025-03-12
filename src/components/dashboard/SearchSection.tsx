@@ -8,6 +8,8 @@ interface SearchSectionProps {
 }
 
 export function SearchSection({ onSearch, isLoading }: SearchSectionProps) {
+  // This component forwards the search request to the parent component
+  // You can modify this if you need to preprocess the ticker before sending to Python
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

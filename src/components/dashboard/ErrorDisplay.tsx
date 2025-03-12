@@ -15,6 +15,10 @@ export function ErrorDisplay({ error }: ErrorDisplayProps) {
       className="my-8 p-4 bg-destructive/10 text-destructive rounded-lg max-w-xl mx-auto text-center"
     >
       <p>An error occurred while fetching strategy data. Please try again.</p>
+      {/* You can add more detailed error information from your Python function here */}
+      {process.env.NODE_ENV === 'development' && (
+        <p className="text-sm mt-2 text-destructive/80">{error.message}</p>
+      )}
     </motion.div>
   );
 }
