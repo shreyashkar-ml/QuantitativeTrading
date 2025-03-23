@@ -17,8 +17,8 @@ A flexible and powerful quantitative trading system that uses multiple alpha str
 
 1. Clone this repository:
 ```
-git clone https://github.com/yourusername/quant_trading.git
-cd quant_trading
+git clone https://github.com/yourusername/QuantitativeTrading.git
+cd QuantitativeTrading
 ```
 
 2. Install dependencies:
