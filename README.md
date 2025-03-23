@@ -190,7 +190,11 @@ See the `example_usage.py` script for examples of how to create these visualizat
 
 ## Advanced Usage
 
-### Custom Alpha Strategies
+### Custom Alpha Stra
+
+https://github.com/user-attachments/assets/60a72f88-8051-4a6c-a5f2-0a16d66470e8
+
+tegies
 
 You can create custom alpha strategies by extending the base Alpha class. See the existing alpha implementations in the `alphas.py` file for examples.
 
